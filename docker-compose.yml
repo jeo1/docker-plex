@@ -1,0 +1,26 @@
+---
+networks:
+  macvlan_network:
+    external: true
+    name: "${DOCKER_NETWORK}"
+
+services:
+  plex:
+    image: lscr.io/linuxserver/plex:latest
+    container_name: plex
+    environment:
+      - "PUID=1000"
+      - "PGID=1000"
+      - "VERSION=docker"
+    volumes:
+      - "${PLEX_CONFIG}:/config"
+      - "${SONARR}:/tv:ro"
+      - "${RADARR}:/movies:ro"
+      - "${OTHER}:/other:ro"
+      - "${OTHER_QBITTORRENT}:/other_qbittorrent:ro"
+    restart: always
+    networks:
+      macvlan_network:
+        ipv4_address: "${IP_ADDRESS}"
+    env_file:
+      - ./private/.env

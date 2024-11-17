@@ -7,6 +7,7 @@ networks:
 services:
   plex:
     image: lscr.io/linuxserver/plex:latest
+    pull_policy: always
     container_name: plex
     environment:
       - "PUID=1000"

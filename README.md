@@ -3,17 +3,12 @@
 COMPOSE_PROJECT_NAME=plex
 TIMEZONE=America/Toronto
 
-DOCKER_NETWORK=<name of docker network>
-IP_ADDRESS=<ip address of container>
+DOCKER_MACVLAN_NETWORK=<name of docker network>
+PLEX_IP_ADDRESS=<ip address of plex container>
 
 # Update
-SONARR=<path to sonarr media>
-RADARR=<path to radarr media>
-OTHER=<path to other media>
-OTHER_QBITTORRENT=<path to qbittorrent media>
-
+PLEX_MEDIA_MOUNT=<path to plex media>
 PLEX_CONFIG=<path to plex config>
-
 ```
 
 ### private/.env

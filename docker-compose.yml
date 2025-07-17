@@ -2,7 +2,7 @@
 networks:
   macvlan_network:
     external: true
-    name: "${DOCKER_NETWORK}"
+    name: "${DOCKER_MACVLAN_NETWORK}"
 
 services:
   plex:
@@ -15,13 +15,10 @@ services:
       - "VERSION=docker"
     volumes:
       - "${PLEX_CONFIG}:/config"
-      - "${SONARR}:/tv:ro"
-      - "${RADARR}:/movies:ro"
-      - "${OTHER}:/other:ro"
-      - "${OTHER_QBITTORRENT}:/other_qbittorrent:ro"
+      - "${PLEX_MEDIA_MOUNT}:/media_mnt:ro"
     restart: always
     networks:
       macvlan_network:
-        ipv4_address: "${IP_ADDRESS}"
+        ipv4_address: "${PLEX_IP_ADDRESS}"
     env_file:
       - ./private/.env
